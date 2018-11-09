@@ -6,48 +6,76 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane fx:id="pane" alignment="center" hgap="10" prefHeight="501.0" prefWidth="416.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
     </padding>
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnSpan="2">
-        <ComboBox fx:id="httpMethod" prefWidth="150.0">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="GET" />
-                    <String fx:value="PUT" />
-                    <String fx:value="POST" />
-                    <String fx:value="HEAD" />
-                    <String fx:value="DELETE" />
-                </FXCollections>
-            </items>
-            <value>
-                <String fx:value="GET" />
-            </value>
-        </ComboBox>
-        <TextField fx:id="url" prefWidth="90" promptText="Enter request URL" />
-        <Button onAction="#sendRequest" text="send" />
-    </HBox>
-    <Label text="Bucket Name" GridPane.rowIndex="1" />
-    <Label text="Access Key" GridPane.rowIndex="2" />
-    <Label text="Secret Key" GridPane.rowIndex="3" />
-    <TextField fx:id="bucketName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <TextField fx:id="accessKey" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-    <TextField fx:id="secretKey" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+     <ComboBox fx:id="httpMethod" prefHeight="23.0" prefWidth="73.0">
+         <items>
+             <FXCollections fx:factory="observableArrayList">
+                 <String fx:value="GET" />
+                 <String fx:value="PUT" />
+                 <String fx:value="POST" />
+                 <String fx:value="HEAD" />
+                 <String fx:value="DELETE" />
+             </FXCollections>
+         </items>
+         <value>
+             <String fx:value="GET" />
+         </value>
+     </ComboBox>
+     <TextField fx:id="url" prefHeight="23.0" prefWidth="247.0" promptText="Enter request URL" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+     <Button onAction="#sendRequest" text="Send" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
+    <TitledPane animated="false" collapsible="false" text="Params" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+        <AnchorPane prefHeight="128.0" prefWidth="394.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <GridPane hgap="10.0" layoutX="30.0" layoutY="30.0" prefHeight="142.0" prefWidth="354.0" vgap="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                <Label text="Bucket Name" />
+                <Label text="Access Key" GridPane.rowIndex="1" />
+                <Label text="Secret Key" GridPane.rowIndex="2" />
+                <Button mnemonicParsing="false" onAction="#openFileChooser" text="Select File" GridPane.rowIndex="3" />
+                <TextField fx:id="bucketName" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                <TextField fx:id="accessKey" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="secretKey" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="selectedFile" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+        </AnchorPane>
+    </TitledPane>
+    <TitledPane animated="false" collapsible="false" text="Result" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <TextArea fx:id="textArea" editable="false" layoutX="27.6" layoutY="29.6" prefHeight="146.0" prefWidth="344.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+        </AnchorPane>
+    </TitledPane>
    <columnConstraints>
+      <ColumnConstraints percentWidth="20.0" />
       <ColumnConstraints />
-      <ColumnConstraints />
+      <ColumnConstraints percentWidth="65.0" />
+      <ColumnConstraints percentWidth="15.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
-      <RowConstraints />
    </rowConstraints>
+
 </GridPane>
